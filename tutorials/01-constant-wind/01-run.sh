@@ -43,12 +43,12 @@ YMAX=$XMAX
 TR="$CELLSIZE $CELLSIZE"
 TE="$XMIN $YMIN $XMAX $YMAX"
 
-SCRATCH=./scratch
+SCRATCH=$ELMFIRE_SCRATCH_BASE
 INPUTS=./inputs
 OUTPUTS=./outputs
 
 rm -f -r $SCRATCH $INPUTS $OUTPUTS
-mkdir $SCRATCH $INPUTS $OUTPUTS
+mkdir -p $SCRATCH $INPUTS $OUTPUTS
 
 cp elmfire.data.in $INPUTS/elmfire.data
 

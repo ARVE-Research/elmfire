@@ -51,6 +51,6 @@ WX_BILINEAR_INTERPOLATION=.TRUE.
 /
 
 &MISCELLANEOUS
-PATH_TO_GDAL                   = '/usr/bin'
-SCRATCH                        = './scratch'
+PATH_TO_GDAL                   = '/work/kaplan_lab/easybuild/software/GDAL/3.10.0-foss-2024a/bin'
+SCRATCH                        = '/dev/shm/jed.kaplan/elmfire/scratch'
 /

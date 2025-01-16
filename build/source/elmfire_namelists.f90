@@ -20,7 +20,7 @@ IF (IRANK_WORLD .EQ. 0) WRITE(*,*) 'Reading &MISCELLANEOUS namelist group'
 BUILDING_FUEL_MODEL_FILE       = 'building_fuel_models.csv'
 FUEL_MODEL_FILE                = 'null'
 MISCELLANEOUS_INPUTS_DIRECTORY = 'null'
-PATH_TO_GDAL                   = '/usr/bin'
+! PATH_TO_GDAL                   = '/usr/bin'
 SCRATCH                        = 'null'
 
 READ(LUINPUT,NML=MISCELLANEOUS,IOSTAT=IOS)

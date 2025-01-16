@@ -57,6 +57,6 @@ T_IGN(1)      = 0.0
 /
 
 &MISCELLANEOUS
-PATH_TO_GDAL                   = '/usr/bin'
-SCRATCH                        = './scratch'
+PATH_TO_GDAL                   = ''
+SCRATCH                        = '/dev/shm/jed.kaplan/elmfire/scratch'
 /

@@ -326,7 +326,7 @@ def run():
                                                                ignition_radius = ignition_radius,
                                                                outdir = outdir ) )
 
-        print( 'Downloading tarball' )
+        print( 'Downloading tarball from: ',response.fileloc )
 
 # This will not work prior to python 3.10, so hard code command to use wget:
 #    match transfer_mode:

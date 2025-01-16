@@ -21,7 +21,7 @@ INPUTS=./inputs
 OUTPUTS=./outputs
 
 rm -f -r $SCRATCH $INPUTS $OUTPUTS
-mkdir $SCRATCH $INPUTS $OUTPUTS
+mkdir -p $SCRATCH $INPUTS $OUTPUTS
 cp elmfire.data.in $INPUTS/elmfire.data
 
 tar -xvf ./fuel/tutorial03.tar -C $INPUTS
