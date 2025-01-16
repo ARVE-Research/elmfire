@@ -1086,6 +1086,7 @@ REAL, ALLOCATABLE, DIMENSION(:) :: RVALUES
 REAL, ALLOCATABLE, DIMENSION(:,:) :: RTEMP
 INTEGER*2, ALLOCATABLE, DIMENSION(:) :: I2VALUES
 INTEGER*2, ALLOCATABLE, DIMENSION(:,:) :: I2TEMP
+integer :: status
 
 IF (VRT_INSTEAD_OF_TIF) THEN
    FNTIF = TRIM(INDIR) // TRIM(FN) // '.vrt'
@@ -1119,6 +1120,8 @@ IF (IOS .GT. 0) THEN
    WRITE(*,*) 'Problem opening bsq xml header ', TRIM(FNXML)
    WRITE(*,*) 'IOS: ', IOS
    STOP
+else
+  write(0,*)'Reading bsq xml header: ', TRIM(FNXML)
 ENDIF
 
 ! Trash first five lines
@@ -1127,19 +1130,22 @@ DO I = 1, 5
    CONTINUE
 ENDDO
 
-! Read number of columns: (line 6)
+status = index(TEMPSTR,'ENVI')
+if (status == 0) READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR ! read one more line
+
+! Read number of columns: (line 6 or 7)
 READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR
 READ(TEMPSTR(24:32),*) TEMPSTR
 TEMPSTR=TEMPSTR(1:LEN_TRIM(TEMPSTR)-1)
 READ(TEMPSTR,*) RASTER%NCOLS
 
-! Read number of rows: (line 7)
+! Read number of rows: (line 7 or 8)
 READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR
 READ(TEMPSTR(22:30),*) TEMPSTR
 TEMPSTR=TEMPSTR(1:LEN_TRIM(TEMPSTR)-1)
 READ(TEMPSTR,*) RASTER%NROWS
 
-! Read number of bands: (line 8)
+! Read number of bands: (line 8 or 9)
 READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR
 READ(TEMPSTR(22:30),*) TEMPSTR
 TEMPSTR=TEMPSTR(1:LEN_TRIM(TEMPSTR)-1)
@@ -1154,7 +1160,7 @@ DO I = 1, 2
    READ(LUINPUT,100,IOSTAT=IOS)
 ENDDO
 
-! Read data type (line 11)
+! Read data type (line 11 or 12)
 READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR
 READ(TEMPSTR(26:26),*) TEMPSTR
 READ(TEMPSTR,*) ITYPE
@@ -1176,7 +1182,7 @@ DO I = 1, 7
    READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR
 ENDDO
 
-! Read nodata: (line 19)
+! Read nodata: (line 19 or 20)
 READ(LUINPUT,100,IOSTAT=IOS) TEMPSTR
 READ(TEMPSTR(18:41),*) TEMPSTR
 TEMPSTR=TEMPSTR(1:LEN_TRIM(TEMPSTR)-1)
